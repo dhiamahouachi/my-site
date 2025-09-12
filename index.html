@@ -3,291 +3,808 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Dhia Mahouachi - Cybersecurity Student & Junior SOC Analyst Resume" />
+  <meta name="description" content="Dhia Mahouachi - Cybersecurity Student & Penetration Tester Resume" />
   <title>Dhia Mahouachi - Cybersecurity Resume</title>
   <link rel="icon" type="image/png" href="dhia.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     :root {
-      --primary: #1f2937;
-      --secondary: #111827;
-      --accent: #fbbf24;
-      --accent-dark: #d97706;
-      --text-light: #f3f4f6;
-      --text-dark: #1f2937;
-      --card-light: #fff;
-      --card-dark: #1e293b;
-      --bg-light: #eef1f7;
-      --bg-dark: #0f172a;
-      --shadow: 0 4px 15px rgba(0,0,0,0.1);
+      --primary: #0a0e17;
+      --secondary: #05080f;
+      --accent: #00f7ff;
+      --accent-alt: #ff00d6;
+      --text-light: #e0e0e0;
+      --text-dark: #0a0e17;
+      --card-light: rgba(255, 255, 255, 0.07);
+      --card-dark: rgba(10, 14, 23, 0.9);
+      --bg-light: #0d111f;
+      --bg-dark: #05080f;
+      --neon-glow: 0 0 10px rgba(0, 247, 255, 0.7), 0 0 20px rgba(0, 247, 255, 0.5);
       --transition: all 0.3s ease;
     }
+    
     *{margin:0;padding:0;box-sizing:border-box}
     body{
       font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color:var(--text-dark);
+      color:var(--text-light);
       line-height:1.6;
       transition:var(--transition);
       min-height:100vh;
       position:relative;
       overflow-x:hidden;
+      background-color: var(--bg-dark);
     }
-    .background-animation{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden;}
-    .light-mode-bg{background:linear-gradient(-45deg,#eef1f7,#dce1ef,#e5e8f1,#dde2ed);background-size:400% 400%;animation:gradient 15s ease infinite;}
-    .dark-mode-bg{background:linear-gradient(-45deg,#0f172a,#0a0f1d,#111827,#0d111c);background-size:400% 400%;animation:gradient 15s ease infinite;}
-    @keyframes gradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-    .floating-shapes{position:absolute;width:100%;height:100%;top:0;left:0}
-    .shape{position:absolute;opacity:0.1;border-radius:50%;background:var(--accent)}
-    .shape:nth-child(1){width:80px;height:80px;top:10%;left:10%;animation:float 25s infinite ease-in-out}
-    .shape:nth-child(2){width:120px;height:120px;top:70%;left:80%;animation:float 30s infinite ease-in-out;animation-delay:2s}
-    .shape:nth-child(3){width:60px;height:60px;top:50%;left:5%;animation:float 20s infinite ease-in-out;animation-delay:4s}
-    .shape:nth-child(4){width:100px;height:100px;top:20%;left:85%;animation:float 35s infinite ease-in-out;animation-delay:1s}
-    .shape:nth-child(5){width:70px;height:70px;top:80%;left:15%;animation:float 28s infinite ease-in-out;animation-delay:3s}
-    @keyframes float{0%,100%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(20px,40px) rotate(90deg)}50%{transform:translate(-30px,60px) rotate(180deg)}75%{transform:translate(10px,-30px) rotate(270deg)}}
-    .dark-mode{color:var(--text-light)}
-    header{background:linear-gradient(135deg,rgba(31,41,55,0.9),rgba(17,24,39,0.9));color:var(--text-light);padding:2.5rem 1.5rem;text-align:center;position:relative;backdrop-filter:blur(10px)}
-    .dark-mode header{background:linear-gradient(135deg,rgba(0,0,0,0.9),rgba(15,23,42,0.9))}
-    .header-content{max-width:1100px;margin:0 auto}
-    header h1{margin:0;font-size:2.8rem;font-weight:800;letter-spacing:1px}
-    header .tagline{font-size:1.4rem;margin:0.5rem 0;color:var(--accent);font-weight:500}
-    .contact-info{margin:1rem 0;display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem}
-    .contact-info a{color:var(--text-light);text-decoration:none;display:flex;align-items:center;gap:0.5rem;transition:var(--transition)}
-    .contact-info a:hover{color:var(--accent)}
-    .social-links{margin:1.2rem 0;display:flex;justify-content:center;gap:1.5rem}
-    .social-links a{color:var(--accent);font-size:1.5rem;transition:var(--transition)}
-    .social-links a:hover{color:var(--text-light);transform:translateY(-3px)}
-    nav{margin:1.5rem 0;display:flex;flex-wrap:wrap;justify-content:center;gap:1.2rem}
-    nav a{color:var(--accent);text-decoration:none;font-weight:600;padding:0.5rem 1rem;border-radius:50px;transition:var(--transition)}
-    nav a:hover{background:rgba(251,191,36,0.15);color:var(--text-light)}
-    #theme-toggle{cursor:pointer;padding:0.8rem 1.5rem;background:var(--accent);color:var(--secondary);border:none;border-radius:50px;font-weight:600;display:flex;align-items:center;gap:0.5rem;margin:1rem auto;transition:var(--transition)}
-    #theme-toggle:hover{background:var(--accent-dark);color:var(--text-light);transform:translateY(-2px)}
-    .container{width:90%;max-width:1100px;margin:2.5rem auto;display:grid;grid-template-columns:1fr;gap:1.8rem}
-    .card{background:rgba(255,255,255,0.9);padding:2rem;border-radius:12px;box-shadow:var(--shadow);transition:var(--transition);backdrop-filter:blur(10px)}
-    .dark-mode .card{background:rgba(30,41,59,0.9)}
-    .card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,0.15)}
-    h2{color:var(--primary);margin-top:0;padding-bottom:0.7rem;border-bottom:3px solid var(--accent);display:inline-block;margin-bottom:1.5rem;font-size:1.8rem}
-    .dark-mode h2{color:var(--text-light)}
-    ul{list-style:none;padding:0}
-    ul li{margin-bottom:1.2rem;padding-left:1.8rem;position:relative}
-    ul li:before{content:"•";color:var(--accent);font-weight:bold;position:absolute;left:0}
-    #searchBar{padding:1rem 1.2rem;width:100%;margin-bottom:1.5rem;border:1px solid #ccc;border-radius:50px;font-size:1rem;background:rgba(255,255,255,0.9);color:var(--text-dark);transition:var(--transition);backdrop-filter:blur(5px)}
-    .dark-mode #searchBar{background:rgba(30,41,59,0.9);color:var(--text-light);border-color:#4b5563}
-    #searchBar:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(251,191,36,0.3)}
-    .experience-item,.project-item{margin-bottom:1.8rem;padding-bottom:1.5rem;border-bottom:1px solid #e5e7eb}
-    .experience-item:last-child,.project-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-    .date{color:#6b7280;font-style:italic;margin-bottom:0.5rem}
-    .dark-mode .date{color:#9ca3af}
-    .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem}
-    .skill-category h3{margin-bottom:1rem;color:var(--primary);font-size:1.2rem}
-    .dark-mode .skill-category h3{color:var(--text-light)}
-    .skill-category ul li{margin-bottom:0.8rem}
-    .print-btn{position:fixed;bottom:2rem;right:2rem;width:50px;height:50px;border-radius:50%;background:var(--accent);color:var(--secondary);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition);z-index:100}
-    .print-btn:hover{background:var(--accent-dark);transform:scale(1.1)}
-    .certifications-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:1.5rem}
-    .certification-card{background:linear-gradient(135deg,rgba(248,250,252,0.9),rgba(241,245,249,0.9));border-left:4px solid var(--accent);padding:1.5rem;border-radius:8px;transition:var(--transition);backdrop-filter:blur(5px)}
-    .dark-mode .certification-card{background:linear-gradient(135deg,rgba(30,41,59,0.9),rgba(51,65,85,0.9))}
-    .certification-card:hover{transform:translateY(-3px);box-shadow:0 5px 15px rgba(0,0,0,0.1)}
-    .certification-title{font-weight:700;color:var(--primary);margin-bottom:0.8rem;font-size:1.2rem}
-    .dark-mode .certification-title{color:var(--text-light)}
-    .certification-issuer{color:#4b5563;font-weight:600;margin-bottom:0.5rem}
-    .dark-mode .certification-issuer{color:#d1d5db}
-    .certification-date{color:#6b7280;font-size:0.9rem;margin-bottom:1rem}
-    .dark-mode .certification-date{color:#9ca3af}
-    .certification-description{color:#374151;font-size:0.95rem}
-    .dark-mode .certification-description{color:#e5e7eb}
-    .about-me{display:flex;flex-direction:column;gap:1.5rem}
-    .about-text{font-size:1.1rem;line-height:1.8}
-    .about-highlight{color:var(--accent-dark);font-weight:600}
-    .dark-mode .about-highlight{color:var(--accent)}
-    .contact-form{display:grid;grid-template-columns:1fr;gap:1.2rem;margin-top:1.5rem}
-    .form-group{display:flex;flex-direction:column;gap:0.5rem}
-    .form-group label{font-weight:600;color:var(--primary)}
-    .dark-mode .form-group label{color:var(--text-light)}
-    .form-control{padding:0.8rem 1rem;border:1px solid #d1d5db;border-radius:8px;font-size:1rem;transition:var(--transition);background:rgba(255,255,255,0.9)}
-    .dark-mode .form-control{background:rgba(30,41,59,0.9);color:var(--text-light);border-color:#4b5563}
-    .form-control:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(251,191,36,0.3)}
-    textarea.form-control{min-height:150px;resize:vertical}
-    .submit-btn{padding:1rem 1.5rem;background:var(--accent);color:var(--secondary);border:none;border-radius:8px;font-weight:600;font-size:1rem;cursor:pointer;transition:var(--transition);display:flex;align-items:center;justify-content:center;gap:0.5rem}
-    .submit-btn:hover{background:var(--accent-dark);color:var(--text-light);transform:translateY(-2px)}
-    .form-status{padding:1rem;border-radius:8px;text-align:center;font-weight:500;margin-top:1rem;display:none}
-    .form-status.success{background:#dcfce7;color:#166534;display:block}
-    .dark-mode .form-status.success{background:#14532d;color:#bbf7d0}
-    .form-status.error{background:#fee2e2;color:#991b1b;display:block}
-    .dark-mode .form-status.error{background:#7f1d1d;color:#fecaca}
-    .thm-badges-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;margin-top:1rem;align-items:start}
-    .thm-badge{background:rgba(255,255,255,0.97);padding:0.6rem;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,0.06);display:flex;flex-direction:column;align-items:center;gap:0.6rem;text-align:center}
-    .thm-badge img{max-width:80px;height:auto;border-radius:6px}
-    .thm-badge .badge-name{font-weight:700;font-size:0.95rem}
-    .thm-badge .badge-meta{font-size:0.8rem;color:#6b7280}
+    
+    /* Futuristic background with grid lines */
+    .background-animation{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      z-index:-1;
+      overflow:hidden;
+      background: 
+        linear-gradient(rgba(5, 8, 15, 0.9) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(5, 8, 15, 0.9) 1px, transparent 1px);
+      background-size: 40px 40px;
+      background-position: center center;
+      perspective: 1000px;
+    }
+    
+    /* Floating tech elements */
+    .floating-tech {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+    
+    .tech-element {
+      position: absolute;
+      opacity: 0.5;
+      background: transparent;
+      border: 1px solid var(--accent);
+      box-shadow: var(--neon-glow);
+      animation: float-tech 20s infinite linear;
+    }
+    
+    .tech-element:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      top: 10%;
+      left: 10%;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      animation-delay: 0s;
+    }
+    
+    .tech-element:nth-child(2) {
+      width: 120px;
+      height: 120px;
+      top: 70%;
+      left: 80%;
+      clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+      animation-delay: 5s;
+    }
+    
+    .tech-element:nth-child(3) {
+      width: 60px;
+      height: 60px;
+      top: 50%;
+      left: 5%;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      animation-delay: 10s;
+    }
+    
+    .tech-element:nth-child(4) {
+      width: 100px;
+      height: 100px;
+      top: 20%;
+      left: 85%;
+      clip-path: circle(50% at 50% 50%);
+      animation-delay: 15s;
+    }
+    
+    @keyframes float-tech {
+      0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        opacity: 0.3;
+      }
+      25% {
+        transform: translate(20px, 40px) rotate(90deg) scale(1.1);
+        opacity: 0.5;
+      }
+      50% {
+        transform: translate(-30px, 60px) rotate(180deg) scale(1.2);
+        opacity: 0.7;
+      }
+      75% {
+        transform: translate(10px, -30px) rotate(270deg) scale(1.1);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translate(0, 0) rotate(360deg) scale(1);
+        opacity: 0.3;
+      }
+    }
+    
+    /* Header styles */
+    header {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(5, 8, 15, 0.5));
+      color: var(--text-light);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      position: relative;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--accent);
+      box-shadow: var(--neon-glow);
+    }
+    
+    .header-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    header h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: linear-gradient(45deg, var(--accent), var(--accent-alt));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+    }
+    
+    header .tagline {
+      font-size: 1.4rem;
+      margin: 0.5rem 0;
+      color: var(--accent);
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    
+    .contact-info {
+      margin: 1rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    
+    .contact-info a {
+      color: var(--text-light);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+      padding: 0.5rem 1rem;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+    
+    .contact-info a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      box-shadow: var(--neon-glow);
+    }
+    
+    .social-links {
+      margin: 1.2rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    
+    .social-links a {
+      color: var(--accent);
+      font-size: 1.5rem;
+      transition: var(--transition);
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid transparent;
+    }
+    
+    .social-links a:hover {
+      color: var(--text-light);
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: var(--neon-glow);
+    }
+    
+    nav {
+      margin: 1.5rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+    
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+    
+    nav a:hover {
+      background: rgba(0, 247, 255, 0.15);
+      color: var(--text-light);
+      border-color: var(--accent);
+      box-shadow: var(--neon-glow);
+    }
+    
+    #theme-toggle {
+      cursor: pointer;
+      padding: 0.8rem 1.5rem;
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1rem auto;
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    #theme-toggle:hover {
+      background: rgba(0, 247, 255, 0.2);
+      color: var(--text-light);
+      transform: translateY(-2px);
+      box-shadow: var(--neon-glow);
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 2.5rem auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+    }
+    
+    .card {
+      background: rgba(10, 14, 23, 0.7);
+      padding: 2rem;
+      border-radius: 8px;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 247, 255, 0.2);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 247, 255, 0.2);
+      border-color: var(--accent);
+    }
+    
+    h2 {
+      color: var(--accent);
+      margin-top: 0;
+      padding-bottom: 0.7rem;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    ul li {
+      margin-bottom: 1.2rem;
+      padding-left: 1.8rem;
+      position: relative;
+    }
+    
+    ul li:before {
+      content: "▸";
+      color: var(--accent);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+    
+    #searchBar {
+      padding: 1rem 1.2rem;
+      width: 100%;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(0, 247, 255, 0.3);
+      border-radius: 4px;
+      font-size: 1rem;
+      background: rgba(10, 14, 23, 0.7);
+      color: var(--text-light);
+      transition: var(--transition);
+      backdrop-filter: blur(5px);
+    }
+    
+    #searchBar:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: var(--neon-glow);
+    }
+    
+    .experience-item, .project-item {
+      margin-bottom: 1.8rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .experience-item:last-child, .project-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .date {
+      color: #8b9bbf;
+      font-style: italic;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .skill-category h3 {
+      margin-bottom: 1rem;
+      color: var(--accent);
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .skill-category ul li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .print-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--neon-glow);
+      transition: var(--transition);
+      z-index: 100;
+      border: none;
+    }
+    
+    .print-btn:hover {
+      background: var(--accent-alt);
+      transform: scale(1.1);
+    }
+    
+    .certifications-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .certification-card {
+      background: linear-gradient(135deg, rgba(10, 14, 23, 0.7), rgba(15, 22, 36, 0.7));
+      border-left: 4px solid var(--accent);
+      padding: 1.5rem;
+      border-radius: 8px;
+      transition: var(--transition);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(0, 247, 255, 0.2);
+    }
+    
+    .certification-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--neon-glow);
+      border-color: var(--accent);
+    }
+    
+    .certification-title {
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+      font-size: 1.2rem;
+    }
+    
+    .certification-issuer {
+      color: #8b9bbf;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .certification-date {
+      color: #6b8cbf;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    .certification-description {
+      color: #c3d0e8;
+      font-size: 0.95rem;
+    }
+    
+    .about-me {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    
+    .about-highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    
+    .contact-form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .form-group label {
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+    
+    .form-control {
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(0, 247, 255, 0.3);
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: rgba(10, 14, 23, 0.7);
+      color: var(--text-light);
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: var(--neon-glow);
+    }
+    
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      padding: 1rem 1.5rem;
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .submit-btn:hover {
+      background: rgba(0, 247, 255, 0.2);
+      color: var(--text-light);
+      transform: translateY(-2px);
+      box-shadow: var(--neon-glow);
+    }
+    
+    .form-status {
+      padding: 1rem;
+      border-radius: 4px;
+      text-align: center;
+      font-weight: 500;
+      margin-top: 1rem;
+      display: none;
+      border: 1px solid;
+    }
+    
+    .form-status.success {
+      background: rgba(34, 197, 94, 0.1);
+      color: #22c55e;
+      border-color: #22c55e;
+      display: block;
+    }
+    
+    .form-status.error {
+      background: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+      border-color: #ef4444;
+      display: block;
+    }
+    
+    .thm-badges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+      align-items: start;
+    }
+    
+    .thm-badge {
+      background: rgba(10, 14, 23, 0.9);
+      padding: 0.6rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      text-align: center;
+      border: 1px solid rgba(0, 247, 255, 0.2);
+      transition: var(--transition);
+    }
+    
+    .thm-badge:hover {
+      border-color: var(--accent);
+      box-shadow: var(--neon-glow);
+      transform: translateY(-3px);
+    }
+    
+    .thm-badge img {
+      max-width: 80px;
+      height: auto;
+      border-radius: 6px;
+    }
+    
+    .thm-badge .badge-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+    
+    .thm-badge .badge-meta {
+      font-size: 0.8rem;
+      color: #8b9bbf;
+    }
     
     /* NEW: TryHackMe Header Badge Styles */
     .thm-header-badge {
       display: inline-flex;
       align-items: center;
-      background: linear-gradient(135deg, #1c2331, #2c3447);
+      background: linear-gradient(135deg, rgba(10, 14, 23, 0.9), rgba(15, 22, 36, 0.9));
       color: white;
       padding: 0.5rem 1rem;
-      border-radius: 50px;
+      border-radius: 4px;
       margin-top: 0.8rem;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.9rem;
-      box-shadow: var(--shadow);
+      box-shadow: var(--neon-glow);
       transition: var(--transition);
-      border: 2px solid transparent;
+      border: 1px solid var(--accent);
     }
+    
     .thm-header-badge:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(0, 247, 255, 0.7);
+      background: linear-gradient(135deg, rgba(15, 22, 36, 0.9), rgba(20, 30, 48, 0.9));
     }
+    
     .thm-header-badge i {
       margin-right: 0.5rem;
       color: var(--accent);
     }
+    
     .thm-header-badge .thm-rank {
       background: var(--accent);
       color: var(--secondary);
       padding: 0.2rem 0.6rem;
-      border-radius: 20px;
+      border-radius: 4px;
       margin-left: 0.5rem;
       font-weight: 700;
     }
+    
+    /* Binary rain animation */
+    .binary-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+    
     @media (max-width:768px){
-      header h1{font-size:2.2rem}header .tagline{font-size:1.2rem}.contact-info{flex-direction:column;gap:0.8rem}nav{gap:0.8rem}nav a{padding:0.4rem 0.8rem;font-size:0.9rem}.container{width:95%}.card{padding:1.5rem}.skills-grid,.certifications-grid{grid-template-columns:1fr}
+      header h1{font-size:2.2rem}
+      header .tagline{font-size:1.2rem}
+      .contact-info{flex-direction:column;gap:0.8rem}
+      nav{gap:0.8rem}
+      nav a{padding:0.4rem 0.8rem;font-size:0.9rem}
+      .container{width:95%}
+      .card{padding:1.5rem}
+      .skills-grid,.certifications-grid{grid-template-columns:1fr}
       .thm-header-badge {font-size: 0.8rem; padding: 0.4rem 0.8rem;}
     }
-    @media print{body,.dark-mode{background:#fff;color:#000;font-size:12pt}.background-animation,header,nav,#theme-toggle,#searchBar,.print-btn{display:none}.container{width:100%;margin:0;grid-template-columns:1fr;gap:1rem}.card{box-shadow:none;border:1px solid #000;page-break-inside:avoid;background:#fff!important}h2{font-size:14pt}.card:hover{transform:none}.dark-mode .card{background:#fff;color:#000}a{color:#000;text-decoration:underline}.social-links{display:none}.certification-card{border-left:3px solid #000;background:#f9f9f9!important;color:#000!important}#contact-form,#about{display:none}
+    
+    @media print{
+      body{background:#fff;color:#000;font-size:12pt}
+      .background-animation,header,nav,#theme-toggle,#searchBar,.print-btn{display:none}
+      .container{width:100%;margin:0;grid-template-columns:1fr;gap:1rem}
+      .card{box-shadow:none;border:1px solid #000;page-break-inside:avoid;background:#fff!important}
+      h2{font-size:14pt;color:#000!important}
+      .card:hover{transform:none}
+      .dark-mode .card{background:#fff;color:#000}
+      a{color:#000;text-decoration:underline}
+      .social-links{display:none}
+      .certification-card{border-left:3px solid #000;background:#f9f9f9!important;color:#000!important}
+      #contact-form,#about{display:none}
       .thm-header-badge {display: none;}
     }
   </style>
 </head>
 <body>
-  <!-- Animated Background -->
-  <div class="background-animation light-mode-bg">
-    <div class="floating-shapes">
-      <div class="shape"></div>
-      <div class="shape"></div>
-      <div class="shape"></div>
-      <div class="shape"></div>
-      <div class="shape"></div>
-    </div>
+  <div class="background-animation"></div>
+  <div class="floating-tech">
+    <div class="tech-element"></div>
+    <div class="tech-element"></div>
+    <div class="tech-element"></div>
+    <div class="tech-element"></div>
   </div>
-
+  
   <header>
     <div class="header-content">
       <h1>Dhia Mahouachi</h1>
       <p class="tagline">Cybersecurity student & Penetration Tester</p>
       
-      <!-- NEW: TryHackMe Header Badge -->
-      <a href="https://tryhackme.com/p/dhiamahouachi" target="_blank" class="thm-header-badge">
-        <i class="fas fa-shield-alt"></i> TryHackMe
-        <span class="thm-rank">Rank: 431,621</span>
-      </a>
-
       <div class="contact-info">
-        <a href="mailto:dhiamahouachi2025@gmail.com">
-          <i class="fas fa-envelope"></i> dhiamahouachi2025@gmail.com
-        </a>
-
-        <a>
+       
+        <a href="#">
           <i class="fas fa-map-marker-alt"></i> Istanbul, Turkey
         </a>
       </div>
-
+      
       <div class="social-links">
-        <a href="https://github.com/dhiamahouachi111-cmd" target="_blank" aria-label="GitHub">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/dhia-mahouachi-a42863212/" target="_blank" aria-label="LinkedIn">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <!-- NEW: TryHackMe Social Link -->
-        <a href="https://tryhackme.com/p/dhiamahouachi" target="_blank" aria-label="TryHackMe">
-          <i class="fas fa-shield-alt"></i>
-        </a>
+        <a href="https://www.linkedin.com/in/dhia-mahouachi-a42863212/"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/dhiamahouachi"><i class="fab fa-github"></i></a>
+       
       </div>
-
+      
       <nav>
-        <a href="#about"><i class="fas fa-user"></i> About Me</a>
-        <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
-        <a href="#projects"><i class="fas fa-code"></i> Projects</a>
-        <a href="#education"><i class="fas fa-graduation-cap"></i> Education</a>
-        <a href="#skills"><i class="fas fa-tools"></i> Skills</a>
-        <a href="#certifications"><i class="fas fa-certificate"></i> Certifications</a>
-        <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
-        <a href="#tryhackme"><i class="fas fa-shield-alt"></i> TryHackMe</a>
+        <a href="#about">About Me</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
       </nav>
-
-      <button id="theme-toggle">
-        <i class="fas fa-moon"></i> Toggle Dark Mode
-      </button>
+      
+      <a href="https://tryhackme.com/p/dhiamahouachii" class="thm-header-badge">
+        <i class="fas fa-shield-alt"></i> TryHackMe
+        <span class="thm-rank">THM</span>
+      </a>
     </div>
   </header>
-
+  
+  <button id="theme-toggle"><i class="fas fa-moon"></i> Cyber Mode</button>
+  
   <div class="container">
-    <input type="text" id="searchBar" placeholder="Search projects..." onkeyup="searchProjects()">
-
+    <input type="text" id="searchBar" placeholder="Search projects...">
+    
     <section id="about" class="card">
-      <h2><i class="fas fa-user"></i> About Me</h2>
+      <h2>About Me</h2>
       <div class="about-me">
         <p class="about-text">
-          Hey there! I'm Dhia, a Computer Engineering student based in Istanbul 📍.
-          I have a strong passion for cybersecurity and enjoy exploring the world of penetration testing.
+          Hey there! I'm Dhia, a Computer Engineering student based in Istanbul 📍. I have a strong passion for cybersecurity and enjoy exploring the world of penetration testing.
         </p>
         <p class="about-text">
-          I'm always learning and developing my skills, particularly in <span class="about-highlight">Linux</span>,
-          <span class="about-highlight">Python</span>, and <span class="about-highlight">SQL</span>, which are essential
-          tools for the cybersecurity and IT sectors. My goal is to become a skilled security professional who can help
-          organizations protect their digital assets from emerging threats.
+          I'm always learning and developing my skills, particularly in Linux, Python, and SQL, which are essential tools for the cybersecurity and IT sectors. My goal is to become a skilled security professional who can help organizations protect their digital assets from emerging threats.
         </p>
         <p class="about-text">
-          When I'm not studying or working on security projects, I enjoy participating in CTF challenges,
-          contributing to open-source security tools, and staying updated with the latest cybersecurity trends.
+          When I'm not studying or working on security projects, I enjoy participating in CTF challenges, contributing to open-source security tools, and staying updated with the latest cybersecurity trends.
         </p>
       </div>
     </section>
-
+    
     <section id="experience" class="card">
-      <h2><i class="fas fa-briefcase"></i> Experience</h2>
+      <h2>Experience</h2>
       <div class="experience-item">
         <h3>Penetration Tester</h3>
-        <p class="date">May 2024 - April 2025</p>
-        <p class="issuer">Technology Training Center (Remote)</p>
-        <p>Demonstrated diligence, dedication, and commitment as a remote penetration tester. Gained practical experience in identifying vulnerabilities and strengthening security systems.</p>
+        <p class="date"><i class="far fa-calendar-alt"></i> May 2024 - April 2025</p>
+        <p><strong>Technology Training Center (Remote)</strong></p>
+        <ul>
+          <li>Demonstrated diligence, dedication, and commitment as a remote penetration tester</li>
+          <li>Gained practical experience in identifying vulnerabilities and strengthening security systems</li>
+        </ul>
       </div>
-
-      <div class="experience-item">
-        <h3>SOC Practice Labs</h3>
-        <p class="date">2022 - 2023</p>
-        <p>Gained practical experience in log monitoring, SIEM alert triage, and threat detection as a junior blue team analyst.</p>
-      </div>
+      
+      
     </section>
-
+    
     <section id="projects" class="card">
-      <h2><i class="fas fa-code"></i> Projects</h2>
-      <ul id="projectList">
-        <li class="project-item">
-          <strong>mini_easm.py</strong> – Python tool for domain reconnaissance (Nmap, subdomain enumeration, threading).
-        </li>
-        <li class="project-item">
-          <strong>SQL Injection & XSS Testing</strong> – Built vulnerable web apps to practice and demonstrate exploitation techniques.
-        </li>
-        <li class="project-item">
-          <strong>Network Analysis Lab</strong> – Used Wireshark and Burp Suite to analyze HTTP traffic and test security weaknesses.
-        </li>
-      </ul>
+      <h2>Projects</h2>
+      <div class="project-item">
+        <h3>mini_easm.py</h3>
+        <p class="date">Python tool for domain reconnaissance</p>
+        <ul>
+          <li>Built a Python tool for domain reconnaissance with Nmap integration</li>
+          <li>Implemented subdomain enumeration capabilities</li>
+          <li>Utilized threading for improved performance</li>
+        </ul>
+      </div>
+      
+      <div class="project-item">
+        <h3>SQL Injection & XSS Testing</h3>
+        <p class="date">Web application security testing</p>
+        <ul>
+          <li>Built vulnerable web apps to practice and demonstrate exploitation techniques</li>
+          <li>Tested various SQL injection and cross-site scripting attack vectors</li>
+        </ul>
+      </div>
+      
+      <div class="project-item">
+        <h3>Network Analysis Lab</h3>
+        <p class="date">Traffic analysis and security testing</p>
+        <ul>
+          <li>Used Wireshark and Burp Suite to analyze HTTP traffic</li>
+          <li>Tested security weaknesses in network communications</li>
+        </ul>
+      </div>
     </section>
-
+    
     <section id="education" class="card">
-      <h2><i class="fas fa-graduation-cap"></i> Education</h2>
-      <p><strong>Bachelor in Computer Engineering</strong> – Beykent University (Istanbul, Turkey)</p>
-      <p class="date">Expected Graduation: 2025</p>
-      <p>Blue Diploma recognized across Europe</p>
+      <h2>Education</h2>
+      <div class="experience-item">
+        <h3>Bachelor in Computer Engineering</h3>
+        <p class="date"><i class="far fa-calendar-alt"></i> Expected Graduation: 2025</p>
+        <p><strong>Beykent University (Istanbul, Turkey)</strong></p>
+        <ul>
+          <li>Blue Diploma recognized across Europe</li>
+        </ul>
+      </div>
     </section>
-
+    
     <section id="skills" class="card">
-      <h2><i class="fas fa-tools"></i> Skills</h2>
+      <h2>Skills</h2>
       <div class="skills-grid">
         <div class="skill-category">
           <h3>Programming</h3>
@@ -298,6 +815,7 @@
             <li>SQL</li>
           </ul>
         </div>
+        
         <div class="skill-category">
           <h3>Cybersecurity</h3>
           <ul>
@@ -309,6 +827,7 @@
             <li>Nessus</li>
           </ul>
         </div>
+        
         <div class="skill-category">
           <h3>Web Security</h3>
           <ul>
@@ -318,6 +837,7 @@
             <li>Penetration Testing</li>
           </ul>
         </div>
+        
         <div class="skill-category">
           <h3>Tools & OS</h3>
           <ul>
@@ -328,211 +848,170 @@
         </div>
       </div>
     </section>
-
+    
     <section id="certifications" class="card">
-      <h2><i class="fas fa-certificate"></i> Certifications</h2>
-      <p>I have earned several industry-recognized certifications demonstrating my expertise in cybersecurity, ethical hacking, and penetration testing:</p>
-
+      <h2>Certifications</h2>
       <div class="certifications-grid">
-        <!-- existing certification cards (unchanged) -->
         <div class="certification-card">
-          <div class="certification-title">Cisco Introduction to Cybersecurity</div>
-          <div class="certification-issuer">Cisco Networking Academy</div>
-          <div class="certification-date">Issued: Feb 05, 2025</div>
-          <div class="certification-description">
-            Covered cybersecurity basics, online safety, common threats and attacks, and organizational protection strategies.
-          </div>
+          <h3 class="certification-title">Cisco Introduction to Cybersecurity</h3>
+          <p class="certification-issuer">Cisco Networking Academy</p>
+          <p class="certification-date">Issued: Feb 05, 2025</p>
+          <p class="certification-description">Covered cybersecurity basics, online safety, common threats and attacks, and organizational protection strategies.</p>
         </div>
-        <!-- ... other certification cards ... -->
+        
+        <div class="certification-card">
+          <h3 class="certification-title">SQL (Advanced) Certification</h3>
+          <p class="certification-issuer">HackerRank</p>
+          <p class="certification-date">Earned: Feb 21, 2025</p>
+          <p class="certification-description">Passed the advanced SQL skill certification test, demonstrating proficiency in complex database querying.</p>
+        </div>
+        
+        <div class="certification-card">
+          <h3 class="certification-title">Offensive Security Operations</h3>
+          <p class="certification-issuer">Cybrary</p>
+          <p class="certification-date">Completed: Feb 21, 2025 | 2 hours</p>
+          <p class="certification-description">Training in offensive security operations, earning 1 CEU/CPE credit for continuing education.</p>
+        </div>
+        
+        <div class="certification-card">
+          <h3 class="certification-title">Certified Ethical Hacking & Penetration Tester (CEHPT)</h3>
+          <p class="certification-issuer">CyberLand Academy</p>
+          <p class="certification-date">Issued: Mar 04, 2025 | ID: 237fbded</p>
+          <p class="certification-description">Professional certification in ethical hacking and penetration testing methodologies and techniques.</p>
+        </div>
+        
+        <div class="certification-card">
+          <h3 class="certification-title">Cyber Security Diploma</h3>
+          <p class="certification-issuer">Technology Training Center</p>
+          <p class="certification-date">Completed: Nov 2024 - Apr 2025 | 60 hours</p>
+          <p class="certification-description">Comprehensive cybersecurity training program with excellent final exam grade.</p>
+        </div>
+        
+        <div class="certification-card">
+          <h3 class="certification-title">Cybersecurity Analytics</h3>
+          <p class="certification-issuer">Technology Training Center</p>
+          <p class="certification-date">Completed: Nov 2024 - Apr 2025 | 60 hours</p>
+          <p class="certification-description">Specialized training in cybersecurity analytics as part of the Cyber Security Diploma program.</p>
+        </div>
+        
+        <div class="certification-card">
+          <h3 class="certification-title">Application Security</h3>
+          <p class="certification-issuer">Technology Training Center</p>
+          <p class="certification-date">Completed: Nov 2024 - Apr 2025 | 60 hours</p>
+          <p class="certification-description">Specialized training in application security as part of the Cyber Security Diploma program.</p>
+        </div>
+        
+        <div class="certification-card">
+          <h3 class="certification-title">Network Security</h3>
+          <p class="certification-issuer">Technology Training Center</p>
+          <p class="certification-date">Completed: Nov 2024 - Apr 2025 | 60 hours</p>
+          <p class="certification-description">Specialized training in network security as part of the Cyber Security Diploma program.</p>
+        </div>
+        
+        <div class="certification-card">
+          <h3 class="certification-title">Risk Management</h3>
+          <p class="certification-issuer">Technology Training Center</p>
+          <p class="certification-date">Completed: Nov 2024 - Apr 2025 | 60 hours</p>
+          <p class="certification-description">Specialized training in risk management as part of the Cyber Security Diploma program.</p>
+        </div>
+        
+        <div class="certification-card">
+          <h3 class="certification-title">Penetration Testing Experience</h3>
+          <p class="certification-issuer">Technology Training Center</p>
+          <p class="certification-date">Tenure: May 2024 - April 2025</p>
+          <p class="certification-description">Remote workforce experience certificate recognizing success as a penetration tester with demonstrated diligence and dedication.</p>
+        </div>
       </div>
     </section>
-
-    <!-- TryHackMe Badges Section (new) -->
-    <section id="tryhackme" class="card">
-      <h2><i class="fas fa-shield-alt"></i> TryHackMe Badges</h2>
-     
-        <div id="thmLoading">Loading badges...</div>
-        <div id="thmError" style="display:none;color:#b91c1c;margin-top:0.8rem;">Unable to load badges from the TryHackMe API. Showing embedded profile below.</div>
-        <div id="thmBadges" class="thm-badges-grid" aria-live="polite"></div>
-
-        <!-- fallback iframe (keeps your original iframe, but inside the section) -->
-        <div id="thmIframeWrapper" style="margin-top:1rem;">
-          <iframe id="thmIframe"
-                  src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=4316219"
-                  style="border:none;width:100%;min-height:160px;"
-                  title="TryHackMe Public Profile (iframe fallback)"></iframe>
-        </div>
-      </div>
-    </section>
-
+    
     <section id="contact" class="card">
-      <h2><i class="fas fa-envelope"></i> Contact Me</h2>
+      <h2>Contact Me</h2>
       <p>Feel free to reach out if you'd like to discuss cybersecurity, collaborate on a project, or just connect!</p>
+      
+    <form action="https://formspree.io/f/mrbaejvy" method="POST">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" class="form-control" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" class="form-control" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" class="form-control" required></textarea>
+  </div>
+  
+  <button type="submit" class="submit-btn">
+    <i class="fas fa-paper-plane"></i> Send Message
+  </button>
+</form>
 
-      <form id="contact-form" action="https://formspree.io/f/mrbaejvy" method="POST">
-        <div style="margin-bottom:1rem;">
-          <label for="name">Name:</label><br>
-          <input type="text" id="name" name="name" required class="form-control" style="width:100%;padding:0.8rem;border-radius:8px;border:1px solid #ccc;">
-        </div>
-        <div style="margin-bottom:1rem;">
-          <label for="email">Email:</label><br>
-          <input type="email" id="email" name="email" required class="form-control" style="width:100%;padding:0.8rem;border-radius:8px;border:1px solid #ccc;">
-        </div>
-        <div style="margin-bottom:1rem;">
-          <label for="message">Message:</label><br>
-          <textarea id="message" name="message" rows="5" required class="form-control" style="width:100%;padding:0.8rem;border-radius:8px;border:1px solid #ccc;"></textarea>
-        </div>
-        <button type="submit" class="submit-btn" style="padding:0.8rem 1.5rem;background:#fbbf24;color:#111827;border:none;border-radius:50px;cursor:pointer;font-weight:600;">
-          <i class="fas fa-paper-plane"></i> Send Message
-        </button>
-
-        <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
-      </form>
     </section>
   </div>
-
-  <div class="print-btn" onclick="window.print()" aria-label="Print Resume">
+  
+  <div class="print-btn" title="Print Resume">
     <i class="fas fa-print"></i>
   </div>
 
   <script>
-    // Small data helper (projects)
-    const data = {
-      projects: [
-        "mini_easm.py – Python tool for domain reconnaissance (Nmap, subdomain enumeration, threading)",
-        "SQL Injection & XSS Testing – Built vulnerable web apps to practice and demonstrate exploitation techniques",
-        "Network Analysis Lab – Used Wireshark and Burp Suite to analyze HTTP traffic and test security weaknesses"
-      ]
-    };
-
-    function searchProjects() {
-      const input = document.getElementById('searchBar').value.toLowerCase();
-      const projectItems = document.querySelectorAll('.project-item');
-      let found = false;
-
-      projectItems.forEach(item => {
-        const text = item.textContent.toLowerCase();
-        if (text.includes(input)) {
-          item.style.display = "list-item";
-          found = true;
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      
+      if (body.classList.contains('dark-mode')) {
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+      } else {
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i> Cyber Mode';
+      }
+    });
+    
+    // Search functionality
+    const searchBar = document.getElementById('searchBar');
+    const cards = document.querySelectorAll('.card');
+    
+    searchBar.addEventListener('input', () => {
+      const searchTerm = searchBar.value.toLowerCase();
+      
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+          card.style.display = 'block';
         } else {
-          item.style.display = "none";
+          card.style.display = 'none';
         }
       });
-
-      if (!found) {
-        document.getElementById('projectList').innerHTML = '<li>No projects found matching your search.</li>';
-      }
-    }
-
-    // Theme toggle
-    const btn = document.getElementById('theme-toggle');
-    const background = document.querySelector('.background-animation');
-
-    btn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-
-      // Update background animation
-      if (document.body.classList.contains('dark-mode')) {
-        background.className = 'background-animation dark-mode-bg';
-        btn.innerHTML = '<i class="fas fa-sun"></i> Toggle Light Mode';
-      } else {
-        background.className = 'background-animation light-mode-bg';
-        btn.innerHTML = '<i class="fas fa-moon"></i> Toggle Dark Mode';
-      }
     });
-
-    // Print hotkey
-    document.addEventListener('keydown', (e) => {
-      if (e.ctrlKey && e.key === 'p') {
-        e.preventDefault();
-        window.print();
-      }
-    });
-
-    // Contact form functionality (progress feedback)
-    const contactForm = document.getElementById('contact-form');
-    const formStatus = document.getElementById('form-status');
-
-    contactForm.addEventListener('submit', function(e) {
-      // Let the Formspree or server handle the submission; show a client-side status for UX
-      formStatus.textContent = 'Sending...';
-      formStatus.className = 'form-status';
-      setTimeout(() => {
-        formStatus.textContent = "Thank you for your message! I'll get back to you soon.";
-        formStatus.className = 'form-status success';
-        contactForm.reset();
-        setTimeout(() => {
-          formStatus.className = 'form-status';
-        }, 5000);
-      }, 800);
-    });
-
     
-
-    (function loadTryHackMeBadges(){
-      const apiUrl = 'https://tryhackme.com/api/v2/badges/public-profile?userPublicId=4316219';
-      const badgesContainer = document.getElementById('thmBadges');
-      const loading = document.getElementById('thmLoading');
-      const errorBox = document.getElementById('thmError');
-      const iframeWrapper = document.getElementById('thmIframeWrapper');
-
- 
-      iframeWrapper.style.display = 'none';
-
-      fetch(apiUrl, { method: 'GET', credentials: 'omit' })
-        .then(async (res) => {
-          if (!res.ok) throw new Error('Network response not ok: ' + res.status);
-          const json = await res.json();
-
-          const badges = json?.badges || json?.completed || json?.data?.badges || null;
-
-          if (!badges || !Array.isArray(badges) || badges.length === 0) {
-            throw new Error('No badges found in API response');
-          }
-
-          // Clear loading
-          loading.style.display = 'none';
-          badges.forEach(b => {
-        
-            const name = b.name || b.title || ('Badge ' + (b.id || ''));
-            const img = b.image || b.icon || b.badge_image || null;
-            const issued = b.issued_at || b.earned_at || b.completed_at || '';
-            const issuerText = b.category || '';
-            const el = document.createElement('div');
-            el.className = 'thm-badge';
-            el.innerHTML = `
-              ${img ? `<img src="${img}" alt="${name}"/>` : `<div style="font-size:28px;opacity:0.7;"><i class="fas fa-shield-alt"></i></div>`}
-              <div class="badge-name">${escapeHtml(name)}</div>
-              <div class="badge-meta">${escapeHtml(issuerText)} ${issued ? ' • ' + escapeHtml(issued) : ''}</div>
-            `;
-            badgesContainer.appendChild(el);
-          });
-
-        })
-        .catch(err => {
-         
-          // Likely CORS or API shape mismatch: show error and reveal iframe fallback
-          console.warn('TryHackMe badges load failed:', err);
-        
-          loading.style.display = 'none';
-          errorBox.style.display = 'block';
-          iframeWrapper.style.display = 'block';
-        });
-
-      // small helper to prevent injection
-      function escapeHtml(str) {
-        if (!str) return '';
-        return String(str)
-          .replace(/&/g, '&amp;')
-
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
-          
-          .replace(/'/g, '&#39;');
-      }
-    })();
+    // Form submission
+    const contactForm = document.getElementById('contact-form');
+  
+    
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Simulate form submission
+      successMessage.style.display = 'block';
+      errorMessage.style.display = 'none';
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        contactForm.reset();
+        successMessage.style.display = 'none';
+      }, 3000);
+    });
+    
+    // Print functionality
+    const printBtn = document.querySelector('.print-btn');
+    
+    printBtn.addEventListener('click', () => {
+      window.print();
+    });
   </script>
 </body>
 </html>
